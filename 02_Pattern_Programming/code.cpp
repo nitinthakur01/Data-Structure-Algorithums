@@ -13,6 +13,7 @@ int main(){
             cout << "*";
         }
         cout << endl;
+    }
 
     // Imp :- Practice to start loop from 0, So we can use this method for upcoming topics like Arrays
 
@@ -146,6 +147,6 @@ int main(){
     //   121
     //  12321
     // 1234321
-
+    
     return 0;
 }
