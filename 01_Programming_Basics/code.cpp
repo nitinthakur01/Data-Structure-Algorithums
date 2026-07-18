@@ -4,7 +4,6 @@ using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
 int main() {
-    
     // INTRODUCTION TO C++ :-
 
     // 1. sum of two integer
