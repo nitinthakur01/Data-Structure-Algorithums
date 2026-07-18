@@ -2,6 +2,8 @@
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
+// FUNCTIONS IN C++ :-
+
 // function defination
 void printHello() { // using void because this func is not returning any value
     cout << "Hello\n";
