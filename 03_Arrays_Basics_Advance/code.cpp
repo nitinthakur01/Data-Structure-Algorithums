@@ -204,7 +204,7 @@ int main() {
 
     while (i < size1 && j < size2) { // once start and end meet for both arrays
         if (arr1[i] == arr2[j]) {
-            cout << arr1[i] << " " << endl; // print values include in both arrays 2 4 55
+            cout << arr1[i] << " " << endl; // print values include in both arrays 2 4 5
             i++;
             j++;
         }
