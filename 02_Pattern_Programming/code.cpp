@@ -3,6 +3,7 @@ using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
 int main(){
+    
     // PATTERN PROGRAMMING :-
 
     // NESTED LOOP
