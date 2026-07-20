@@ -9,7 +9,7 @@ int main() {
     // syntax
     vector<int> vec = {1, 2, 3};
     cout << vec[0] << endl;
-    vector<int> vec (5, 0); // 5 is size of vec, 0 is index of value
+    vector<int> vec (5, 0); // 5 is size of vec
     cout << vec[0] << endl;
 
     // vector functions
