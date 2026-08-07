@@ -4,6 +4,8 @@ using namespace std;
 
 int main() {
 
+    /*
+
     // 1. BEST TIME TO BUY AND SELL STOCKS (V.Imp)
 
     int prices[] = {7, 1, 5, 3, 6, 4};
@@ -78,6 +80,33 @@ int main() {
     // Print answer
     for (int i = 0; i < size; i++) {
         cout << ans[i] << " "; // 24 12 8 6
+    }
+    */
+
+    // 5. Sort Array with 0s, 1s and 2s (Dutch National Flag Algo)
+
+    int arr[] = {2, 0, 2, 1, 1, 0, 1, 2, 0, 0};
+    int size = 10;
+    int mid = 0, low = 0, high = size - 1;
+
+    // Time Complexity is O(n), Space Complexity is O(1)
+    while(mid <= high){
+        if(arr[mid] == 0){
+            swap(arr[low], arr[mid]);
+            mid ++;
+            low ++;
+        }
+        else if(arr[mid] == 1){
+            mid ++;
+        }
+        else{
+            swap(arr[high], arr[mid]);
+                high --;
+        }
+    }
+    
+    for(int i = 0; i < size; i++){
+        cout << arr[i] << " "; // 0 0 0 0 1 1 1 2 2 2 
     }
 
     return 0;
