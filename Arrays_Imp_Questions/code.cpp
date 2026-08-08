@@ -1,10 +1,10 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
 int main() {
-
-    /*
+    // ARRAY IMP QUESTIONS
 
     // 1. BEST TIME TO BUY AND SELL STOCKS (V.Imp)
 
@@ -81,7 +81,6 @@ int main() {
     for (int i = 0; i < size; i++) {
         cout << ans[i] << " "; // 24 12 8 6
     }
-    */
 
     // 5. Sort Array with 0s, 1s and 2s (Dutch National Flag Algo)
 
@@ -109,5 +108,75 @@ int main() {
         cout << arr[i] << " "; // 0 0 0 0 1 1 1 2 2 2 
     }
 
+    // 6. Merge two Sorted Array (V.Imp)
+
+    int A[] = {1, 2, 3, 0, 0, 0};
+    int B[] = {2, 5, 6};
+
+    int m = 3, n = 3; // valid sizes of two array
+    int i = m - 1, j = n - 1, index = m + n - 1; // last valid elements         
+
+    // time comp = O(m+n), space comp = O(1)
+    while(i >= 0 && j >= 0){
+        if(A[i] >= B[j]){
+        A[index] = A[i];
+        index --;
+        i --;
+    }
+    else {
+        A[index] = B[j];
+        index --;
+        j--;
+        }
+    }
+   while (j >= 0){
+        A[index] = B[j];
+        index --;
+        j--;
+   }
+
+    // Print merged array
+    for (int i = 0; i < m + n; i++) {
+        cout << A[i] << " "; // 1 2 2 3 5 6 
+    }
+
+    // 7. Next Permutation (Imp)
+
+    int arr[] = {1, 2, 3};
+    int size = 3;
+
+    // time comp = O(m+n), space comp = O(1)
+
+    // (i) find pivot
+    int pivot = -1;
+    for (int i = size - 2; i >= 0; i--){
+        if(arr[i] < arr[i + 1]){
+            pivot = i;
+            break;
+        }
+    }
+    if(pivot == -1){
+          reverse(arr, arr + size);
+        return 0;
+    }
+
+    // (ii) Next larger element
+    for(int i = size- 1; i > pivot; i--){
+        if(arr[i] > arr[pivot]){
+            swap(arr[i], arr[pivot]);
+            break;
+        }
+    }
+
+    //(iii) Reverse
+    int i = pivot + 1, j = size - 1;
+    while(i <= j){
+        swap(arr[i++], arr[j--]);
+    }
+
+    // Print permuted array
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " "; // 1 3 2
+    }
     return 0;
 }
