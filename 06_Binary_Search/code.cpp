@@ -26,7 +26,6 @@ int main() {
         }
     }
     cout << "Target found at index: " << ans << endl; // Target found at index: 6
-    */
 
     // 1. Search in Rotated Sorted array
 
@@ -62,7 +61,32 @@ int main() {
         }
     }
     cout << "Target found at index: " << ans << endl; // Target found at index: 4
+    */
 
+    // 2. Peak index in a mountain array
+
+    int arr[] = {0, 3, 8, 9, 5, 2};
+    int size = 6;
+    int start = 1, end = size -2;
+    int peak = -1;
+
+    // Time comp = O(logn), space comp = O(1)
+    while(start <= end){
+        int mid = start + (end - start) / 2;
+
+        if(arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1]){
+            peak = mid;
+            break;
+        }
+        else if(arr[mid - 1] < arr[mid]){
+            start = mid + 1;
+        }
+        else {
+            end = mid - 1;
+        }
+    }
+    cout << "Peak index = " << peak << endl; // 3
+    cout << "Peak element = " << arr[peak] << endl; // 9
 
     return 0;
 }
