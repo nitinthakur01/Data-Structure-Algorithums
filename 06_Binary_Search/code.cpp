@@ -61,7 +61,6 @@ int main() {
         }
     }
     cout << "Target found at index: " << ans << endl; // Target found at index: 4
-    */
 
     // 2. Peak index in a mountain array
 
@@ -87,6 +86,40 @@ int main() {
     }
     cout << "Peak index = " << peak << endl; // 3
     cout << "Peak element = " << arr[peak] << endl; // 9
+    */
+
+    // 3. Single elements in sorted array
+
+    int arr[] = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+    int size = 9;
+    int start = 0, end = size - 1;
+    int sinElem = -1;
+
+    // Time comp = O(logn), space comp = O(1)
+    while(start <= end){
+        int mid = start + (end - start) / 2;
+
+        if(arr[mid - 1] != arr[mid] && arr[mid] != arr[mid + 1]){
+            sinElem = mid;
+            break;
+        }
+        if(mid % 2 == 0){ // no is even both side of mid
+            if(arr[mid - 1] == arr[mid]){
+                end = mid - 1; // search in left
+            } else {
+                start = mid + 1; // search in right
+            }
+        } else { // no is odd both side of mid
+            if(arr[mid - 1] == arr[mid]){
+                start = mid + 1; // search in right
+            } else {
+                end = mid - 1; // search in left
+
+            }
+        }
+    }
+    cout << "single element is " << sinElem << endl; // single element is 2
+
 
     return 0;
 }
