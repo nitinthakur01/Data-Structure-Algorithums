@@ -1,6 +1,51 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
+
+// 4. Book allocation or Allocate book (Hard)
+
+// int isValid(vector<int> &arr, int n, int m, int maxAllowedPages){ // O(n)
+//     int students = 1, pages = 0;
+//     // check validity of ans
+//     for(int i = 0; i < n; i++){
+//         if(arr[i] > maxAllowedPages){
+//             return false;
+//         }
+//         if(pages + arr[i] <= maxAllowedPages){
+//             pages += arr[i];
+//         } else {
+//             students ++;
+//             pages = arr[i];
+//         }
+//     }
+//     return students > m ? false : true;
+// }
+
+// int allocatedBooks(vector<int> &arr, int n, int m){ // O(logN * n) N = range
+//     if(m > n){ // no. of students > no. of books
+//         return -1;
+//     }
+//     int sum = 0;
+//     for(int i = 0; i < n; i++){ // O(n)
+//         sum += arr[i];
+//     }
+//     int ans = -1;
+//     int start = 0, end = sum; // range of possible ans
+
+//     while(start <= end){ 
+//         int mid = start + (end - start) / 2;
+
+//         if(isValid(arr, n, m, mid)){ // valid
+//             ans = mid;
+//             end = mid - 1; // search in left
+//         }
+//         else { // Invalid
+//             start = mid + 1; // search in right
+//         }
+//     }
+//     return ans;
+// }
 
 int main() {
     /*
@@ -86,7 +131,6 @@ int main() {
     }
     cout << "Peak index = " << peak << endl; // 3
     cout << "Peak element = " << arr[peak] << endl; // 9
-    */
 
     // 3. Single elements in sorted array
 
@@ -119,7 +163,13 @@ int main() {
         }
     }
     cout << "single element is " << sinElem << endl; // single element is 2
+    */
 
+    // 4. Book allocation or Allocate book (Hard)
+
+    // vector<int> arr = {2, 1, 3, 4};
+    // int n = 4, m = 2;
+    // cout << allocatedBooks(arr, n, m) << endl; // 6
 
     return 0;
 }
