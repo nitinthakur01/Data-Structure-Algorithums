@@ -1,52 +1,55 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include<algorithm>
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
 // 4. Book allocation or Allocate book (Hard)
 
-// int isValid(vector<int> &arr, int n, int m, int maxAllowedPages){ // O(n)
-//     int students = 1, pages = 0;
-//     // check validity of ans
-//     for(int i = 0; i < n; i++){
-//         if(arr[i] > maxAllowedPages){
-//             return false;
-//         }
-//         if(pages + arr[i] <= maxAllowedPages){
-//             pages += arr[i];
-//         } else {
-//             students ++;
-//             pages = arr[i];
-//         }
-//     }
-//     return students > m ? false : true;
-// }
+int isValid(vector<int> &arr, int n, int m, int maxAllowedPages){ // O(n)
+    int students = 1, pages = 0;
+    // check validity of ans
+    for(int i = 0; i < n; i++){
+        if(arr[i] > maxAllowedPages){
+            return false;
+        }
+        if(pages + arr[i] <= maxAllowedPages){
+            pages += arr[i];
+        } else {
+            students ++;
+            pages = arr[i];
+        }
+    }
+    return students > m ? false : true;
+}
 
-// int allocatedBooks(vector<int> &arr, int n, int m){ // O(logN * n) N = range
-//     if(m > n){ // no. of students > no. of books
-//         return -1;
-//     }
-//     int sum = 0;
-//     for(int i = 0; i < n; i++){ // O(n)
-//         sum += arr[i];
-//     }
-//     int ans = -1;
-//     int start = 0, end = sum; // range of possible ans
+int allocatedBooks(vector<int> &arr, int n, int m){ // O(logN * n) N = range
+    if(m > n){ // no. of students > no. of books
+        return -1;
+    }
+    int sum = 0;
+    for(int i = 0; i < n; i++){ // O(n)
+        sum += arr[i];
+    }
+    int ans = -1;
+    int start = 0, end = sum; // range of possible ans
 
-//     while(start <= end){ 
-//         int mid = start + (end - start) / 2;
+    while(start <= end){ 
+        int mid = start + (end - start) / 2;
 
-//         if(isValid(arr, n, m, mid)){ // valid
-//             ans = mid;
-//             end = mid - 1; // search in left
-//         }
-//         else { // Invalid
-//             start = mid + 1; // search in right
-//         }
-//     }
-//     return ans;
-// }
+        if(isValid(arr, n, m, mid)){ // valid
+            ans = mid;
+            end = mid - 1; // search in left
+        }
+        else { // Invalid
+            start = mid + 1; // search in right
+        }
+    }
+    return ans;
+}
+
+// 5. Painter Partition Problem
 
 bool isPossible(vector<int> &arr, int n, int m, int maxAllowedTime){ // O(n)
     int painters = 1, time = 0;
@@ -84,9 +87,44 @@ int minTimeToPaint(vector<int> &arr, int n, int m){ // O(log(sum) * n)
     return ans;
 }
 
+// 6. Aggresive Cows Problem
+
+bool isPossibleCows(vector<int> &arr, int N, int C, int minAllowedDist){ // O(N)
+    int cows = 1, lastStallPos = arr[0];
+
+    for(int i = 1; i < N; i++) {
+        if(arr[i] - lastStallPos >= minAllowedDist){
+            cows ++;
+            lastStallPos = arr[i];
+        }
+        if(cows == C){
+            return true;
+        } 
+    }
+    return false;
+}
+
+int getDistance(vector<int> &arr, int N, int C){
+    sort(arr.begin(), arr.end());
+    int start = 1, end = arr[N - 1] - arr[0], ans = -1; // end = maxVal - minVal
+
+    while(start <= end){ // O(log(Range) * N)
+        int mid = start + (end - start) / 2;
+
+        if(isPossibleCows(arr, N, C, mid)){ // search in right
+            ans = mid;
+            start = mid + 1;
+        } else { // search in left
+            end = mid - 1;
+        }
+    }
+    return ans;
+}
+
+
 int main() {
-    /*
     // BINARY SEARCH :-
+
     int arr[] = {-1, 0, 3, 4, 5, 9, 12};
     int size = 7;
     int target = 12;
@@ -200,22 +238,24 @@ int main() {
         }
     }
     cout << "single element is " << sinElem << endl; // single element is 2
-    */
 
     // 4. Book allocation or Allocate book (Hard)
 
-    // vector<int> arr = {2, 1, 3, 4};
-    // int n = 4, m = 2;
-    // cout << allocatedBooks(arr, n, m) << endl; // 6
+    vector<int> arr1 = {2, 1, 3, 4};
+    int n = 4, m = 2;
+    cout << allocatedBooks(arr1, n, m) << endl; // 6
 
     // 5. Painter Partition Problem
 
-    vector<int> arr = {40, 30, 10, 20};
+    vector<int> arr2 = {40, 30, 10, 20};
     int n = 4, m = 2;
+    cout << minTimeToPaint(arr2, n, m); // 60
 
-    cout << minTimeToPaint(arr, n, m); // 60
-
-
+    // 6. Aggresive Cows Problem 
+    
+    vector<int> arr3 = {1, 2, 8, 4, 9};
+    int N = 5, C = 3; // N = No. of stalls, C = No. of cows
+    cout << getDistance(arr3, N, C) << endl; // 3
 
     return 0;
 }
