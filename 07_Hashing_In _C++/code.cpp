@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
+#include <vector>
 #include <cmath>
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
@@ -87,6 +88,35 @@ int main() {
             while(j < n && nums[j] == nums[j - 1]) j++;
         }
     }
+
+    // Imp : Subarray sum equals to K 
+    int nums[] = {9, 4, 20, 3, 10, 5};
+    int n = 6;
+    int count = 0;
+    int k = 33;
+    vector<int> prefixSum(n, 0);
+
+    // time comp = O(n) space comp = O(n)
+    prefixSum[0] = nums[0];
+    for(int i = 1; i < n; i++) {
+        prefixSum[i] = prefixSum[i - 1] + nums[i];
+    }
+
+    unordered_map<int, int> m; // PS Freq
+    for(int j = 0; j < n; j++){
+        if(prefixSum[j] == k) count ++;
+
+        int val = prefixSum[j] - k;
+        if(m.find(val) != m.end()){
+            count += m[val];
+        }
+        if(m.find(prefixSum[j]) == m.end()){
+            m[prefixSum[j]] = 0;
+        }
+        m[prefixSum[j]]++;
+    }
+    cout << "count = " << count; // count = 2
+
 
     return 0;
 }
