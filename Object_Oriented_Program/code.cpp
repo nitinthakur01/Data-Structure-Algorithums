@@ -7,12 +7,11 @@ using namespace std;
 
 // class
 class Teacher {
-    
     // properties
 private:
     double salary;
 
-public : 
+public: 
     string name;
     string dept;
     string subject;
@@ -21,7 +20,6 @@ public :
     void changeDept(string newDept){
         dept = newDept;
     }
-
     // setter func
     void setSalary(double s){
         salary  = s;
@@ -34,7 +32,6 @@ public :
 
 
 int main(){
-
     // object (entity)
     Teacher t1;
     t1.name = "Nitin Thakur";
