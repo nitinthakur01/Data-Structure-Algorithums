@@ -6,6 +6,7 @@ using namespace std;
 int main() {
     // STL : (standard template library)
 
+    // CONTAINERS :-
     // 1. vectors
     vector<int> vec;
 
