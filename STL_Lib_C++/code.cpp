@@ -4,6 +4,11 @@
 #include <deque>
 #include <stack>
 #include <queue>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+#include <algorithm>
 using namespace std;
 // To run : g++ code.cpp -o code; .\code.exe
 
@@ -11,7 +16,7 @@ int main() {
     // STL : (standard template library)
 
     // CONTAINERS :- (Sequential)
-    /*
+
     // 1. vectors
     vector<int> vec;
 
@@ -87,18 +92,19 @@ int main() {
         cout << val << " "; // 4 3 1 2 
     }
     cout << endl;
-    */
-    // CONTAINERS :- (Non-Sequential)
-   // 1. stack
-    stack <int> s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(4);
 
-    while(!s.empty()){
-        cout << s.top() << " "; // 4 3 2 1
-        s.pop();
+    // CONTAINERS :- (Non-Sequential)
+
+   // 1. stack
+    stack <int> st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+
+    while(!st.empty()){
+        cout << st.top() << " "; // 4 3 2 1
+        st.pop();
     }
     cout << endl;
 
@@ -115,7 +121,7 @@ int main() {
     }
     cout << endl;
 
-    // priority queue
+    // 3. priority queue
     priority_queue <int> pq;
     pq.push(5);
     pq.push(3);
@@ -128,7 +134,82 @@ int main() {
     }
     cout << endl;
 
+    // 4. map
+    map<string, int> m;
+    m["tv"] = 12;
+    m["mob"] = 23;
+    m["tab"] = 34;
+    m["phone"] = 45;
+    m["laptop"] = 9;
 
+    for(auto p : m){
+        cout << p.first << " " << p.second << endl;
+    }
+
+    // unordered map
+    unordered_map<string, int> um;
+    um["tv"] = 12;
+    um["mob"] = 23;
+    um["tab"] = 34;
+    um["phone"] = 45;
+    um["laptop"] = 9;
+
+    for(auto p : um){
+        cout << p.first << " " << p.second << endl;
+    }
+
+    // 5. set
+    set <int> s;
+    s.insert(1);
+    s.insert(2);
+    s.insert(3);
+    s.insert(4);
+
+    for(auto val : s){
+        cout << val << " "; // 1 2 3 4 
+    }
+    cout << endl;
+
+    // unordered set
+    unordered_set<int> us;
+    us.insert(5);
+    us.insert(4);
+    us.insert(3);
+    us.insert(2);
+ 
+    for(auto val : us){
+        cout << val << " "; // 2 3 4 5
+    }
+    cout << endl;
+
+    // ALGORITHUMS :-
+
+    // sorting array
+    int arr[5] = {3, 2, 4, 1, 5};
+    int n = 5;
+
+    sort(arr, arr + n); // #include <algorithums> required
+    for(int val : arr){
+        cout << val << " "; // 1 2 3 4 5 
+    }
+    cout << endl;
+
+    // sorting vector
+    vector<int> vec = {3, 2, 4, 1, 5};
+
+    sort(vec.begin(), vec.end()); 
+    for(int val : vec){
+        cout << val << " "; // 1 2 3 4 5 
+    }
+    cout << endl;
+
+    // reverse
+    vector<int> vec1 = {3, 2, 4, 1, 5};
+
+    reverse(vec1.begin(), vec1.end()); 
+    for(int val : vec1){
+        cout << val << " "; // 5 1 4 2 3
+    }
+    cout << endl;
     return 0;
-
 }
