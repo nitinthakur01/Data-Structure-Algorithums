@@ -4,6 +4,7 @@ using namespace std;
 
 // LINKEDLIST :-
 
+// 1. SINGLY LINKEDLIST
 class Node {
     public:
     int data;
@@ -128,28 +129,121 @@ public:
     }
 };
 
+// 2. DOUBLY LINKEDLIST
+class Dnode {
+    public:
+        int data;
+        Dnode* next;
+        Dnode* prev;
+
+        Dnode(int val){
+            data = val;
+            next = prev = NULL;
+        }
+};
+
+class DoublyList {
+   Dnode* head;
+   Dnode* tail;
+    
+    public:
+        DoublyList(){
+            head = tail = NULL;
+        }
+    
+    void push_front(int val){
+       Dnode* newNode = new Dnode(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+        } else {
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
+        }
+    }
+
+    void push_back(int val){
+       Dnode* newNode = new Dnode(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+        } else {
+            newNode->prev = tail;
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void pop_front(){
+        if(head == NULL){
+            cout << "DLL is empty\n";
+            return;
+        }
+        Dnode* temp = head;
+        head = head->next;
+
+        if(head != NULL){
+            head->prev = NULL;
+        }
+        
+        temp->next = NULL;
+        delete temp;
+    }
+
+    void pop_back(){
+        if(head == NULL){
+            cout << "DLL is empty\n";
+            return;
+        }
+        Dnode* temp = tail;
+        tail = tail->prev;
+
+        if(tail != NULL){
+            tail->next = NULL;
+        }
+        
+        temp->prev = NULL;
+        delete temp;
+    }
+    
+    void print(){
+       Dnode* temp = head;
+
+        while(temp !=NULL){
+            cout << temp->data << " <=> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+};
+
+
 int main(){
 
     List ll;
-
     ll.push_front(1);
     ll.push_front(2);
     ll.push_front(3);
     ll.push_front(4);
     ll.push_front(5);
-
     ll.push_back(6);
-
     ll.pop_front();
-
     ll.pop_back();
-
     ll.insert(6, 1);
-
     ll.printLL();
 
     cout << ll.search(2);
+
+    DoublyList dll;
+    dll.push_front(1);
+    dll.push_front(2);
+    dll.push_front(3);
+    dll.push_back(4);
+    dll.push_back(5);
+    dll.pop_front();
+    dll.pop_back();
+    dll.print();
     
     return 0;
-
 }
