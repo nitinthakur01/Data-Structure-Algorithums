@@ -218,6 +218,103 @@ class DoublyList {
     }
 };
 
+// 3. CIRCULAR LINKEDLIST
+class Cnode {
+public:
+    int data;
+    Cnode* next;
+
+    Cnode(int val){
+        data = val;
+        next = NULL;
+    }
+};
+
+class CircularList {
+    Cnode* head;
+    Cnode* tail;
+
+public:
+    CircularList(){
+        head = tail = NULL;
+    }
+
+    void insertAtHead(int val){
+        Cnode* newNode = new Cnode(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+            tail->next = head;
+        }
+        else{
+            newNode->next = head;
+            head = newNode;
+            tail->next = head;
+        }
+    }
+
+    void insertAtTail(int val){
+        Cnode* newNode = new Cnode(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+            tail->next = head;
+        }
+        else{
+            newNode->next = head;
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void deleteAtHead(){
+        if(head == NULL) return;
+        else if(head == tail){
+            delete head;
+            head = tail = NULL;
+        }
+        else{
+            Cnode* temp = head;
+            head = head->next;
+            tail->next = head;
+            temp->next = NULL;
+            delete temp;
+        }
+    }
+
+     void deleteAtTail(){
+        if(head == NULL) return;
+        else if(head == tail){
+            delete head;
+            head = tail = NULL;
+        }
+        else{
+            Cnode* temp = tail;
+            Cnode* prev = head;
+            while(prev->next != tail){
+                prev = prev->next;
+            }
+            tail = prev;
+            tail->next = head;
+            temp->next = NULL;
+            delete temp;
+        }
+    }
+
+    void print(){
+        if(head == NULL) return;
+        
+        cout << head->data << "->";
+        Cnode* temp = head->next;
+
+        while(temp != head){
+            cout << temp->data << "->";
+            temp = temp->next;
+        }
+        cout << temp->data << endl;
+    }
+};
+
 
 int main(){
 
@@ -233,8 +330,6 @@ int main(){
     ll.insert(6, 1);
     ll.printLL();
 
-    cout << ll.search(2);
-
     DoublyList dll;
     dll.push_front(1);
     dll.push_front(2);
@@ -244,6 +339,16 @@ int main(){
     dll.pop_front();
     dll.pop_back();
     dll.print();
+
+    CircularList cll;
+    cll.insertAtHead(1);
+    cll.insertAtHead(2);
+    cll.insertAtHead(3);
+    cll.insertAtTail(4);
+    cll.insertAtTail(5);
+    cll.deleteAtHead();
+    cll.deleteAtTail();
+    cll.print();
     
     return 0;
 }
